@@ -25,7 +25,7 @@ public class FirstSeleniumTest {
 
     public void tearDown() {
         if (driver != null) {
-          //  driver.quit();
+            driver.quit();
         }
     }
 
@@ -44,6 +44,7 @@ public class FirstSeleniumTest {
         String actualResult = driver.findElement(By.tagName("h6")).getText();
         String expectedResult = "Dashboard";
         Assert.assertEquals(actualResult, expectedResult, "The user is not logged in successfully");
+
 
     }
 }
