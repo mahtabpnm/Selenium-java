@@ -14,4 +14,12 @@ public class JavaScriptUtility extends Utility{
         // we type cast
         ( (JavascriptExecutor) driver).executeScript(jsScript, element);
     }
+
+    // here for js executor
+    // this is how we click element using javascript executor
+    public static void clickJS(By locator){
+        WebElement element = driver.findElement(locator);
+        JavascriptExecutor executor  = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 }
