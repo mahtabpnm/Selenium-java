@@ -1,4 +1,4 @@
-package part3_4.com.demoqa.tests.part3;
+package part3_4.com.demoqa.tests.part3.elements;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
