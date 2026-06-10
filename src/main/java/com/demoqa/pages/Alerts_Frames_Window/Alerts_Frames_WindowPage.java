@@ -11,6 +11,7 @@ import static utilities.JavaScriptUtility.scrollToElementJS;
 
 public class Alerts_Frames_WindowPage extends HomePage {
     private By modalDialogsMenuItem = By.xpath("//li[@id='item-4']//span[text()='Modal Dialogs']");
+    private By alertsMenuItem = By.xpath("//li[@id='item-1']//span[text()='Alerts']");
 
     public ModalDialogsPage clickModalDialogs(){
         new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -18,5 +19,13 @@ public class Alerts_Frames_WindowPage extends HomePage {
         scrollToElementJS(modalDialogsMenuItem);
         click(modalDialogsMenuItem);
         return new ModalDialogsPage();
+    }
+
+    public AlertsMenuPage clickAlertsMenuItem(){
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(alertsMenuItem));
+        scrollToElementJS(alertsMenuItem);
+        click(alertsMenuItem);
+        return new AlertsMenuPage();
     }
 }
