@@ -16,4 +16,8 @@ public class SwitchToUtility extends Utility {
         switchTo().alert().accept();// automatically click ok
 
     }
+
+    public static void dismissAlert(){
+        switchTo().alert().dismiss();
+    }
 }
