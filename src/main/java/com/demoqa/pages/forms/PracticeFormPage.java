@@ -21,6 +21,8 @@ public class PracticeFormPage extends FormsPage {
     private final By sportsHobbyInput  = By.id("hobbies-checkbox-1");
     private final By readingHobbyInput = By.id("hobbies-checkbox-2");
     private final By musicHobbyInput   = By.id("hobbies-checkbox-3");
+    private final By submitButton = By.cssSelector("button[type='submit']");
+    private final By successModal = By.cssSelector(".modal-content");
 
     private void waitForElement(By locator) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -73,5 +75,19 @@ public class PracticeFormPage extends FormsPage {
 
     public boolean isreadingHobbySelected() {
         return find(readingHobbyInput).isSelected();
+    }
+
+    public void clickSubmitButton() {
+        click(submitButton);
+    }
+
+    public boolean isFormSubmittedSuccessfully() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(3))
+                    .until(ExpectedConditions.visibilityOfElementLocated(successModal));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
