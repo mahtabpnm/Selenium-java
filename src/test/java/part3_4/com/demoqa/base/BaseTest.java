@@ -2,11 +2,20 @@ package part3_4.com.demoqa.base;
 
 import com.demoqa.pages.HomePage;
 import com.base.BasePage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import static com.base.BasePage.delay;
 import static utilities.Utility.setUtilityDriver;
@@ -31,6 +40,30 @@ public class BaseTest {
         BasePage.setDriver(driver);
         setUtilityDriver();
         homePage = new HomePage();
+    }
+
+    @AfterMethod
+
+    public void takeFaildResultScreenshot(ITestResult testResult){
+
+        if(ITestResult.FAILURE == testResult.getStatus()){
+            TakesScreenshot screenshot = (TakesScreenshot) driver;
+            File source = screenshot.getScreenshotAs(OutputType.FILE);
+            File destination = new File(System.getProperty("user.dir") +
+                    "/resources/screenshots/" + java.time.LocalDate.now() + "_" +
+                    testResult.getName() + ".png");
+
+            try {
+                Files.createDirectories(destination.getParentFile().toPath());
+                Files.copy(source.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println("Screenshot saved at: " + destination);
+        }
+
+
     }
 
     @AfterClass
