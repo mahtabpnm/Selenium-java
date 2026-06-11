@@ -11,6 +11,18 @@ public class AlertsMenuPage extends Alerts_Frames_WindowPage {
      private By informationAlertsButton = By.id("alertButton");
      private By confirmationAlertsButton = By.id("confirmButton");
      private By confirmationResult = By.id("confirmResult");
+     private By promptAlertsButton = By.id("promtButton");
+     private By promptResult = By.id("promptResult");
+
+
+     public String getPromptAlertResult(){
+         return find(promptResult).getText();
+     }
+
+
+     public void clickPromptAlertsButton(){
+         click(promptAlertsButton);
+     }
 
      public void clickInformationAlertsButton(){
          new WebDriverWait(driver, Duration.ofSeconds(10))

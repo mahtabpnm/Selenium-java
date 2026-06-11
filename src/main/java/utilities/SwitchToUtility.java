@@ -20,4 +20,7 @@ public class SwitchToUtility extends Utility {
     public static void dismissAlert(){
         switchTo().alert().dismiss();
     }
+    public static void setAlertsText(String text){
+        switchTo().alert().sendKeys(text);
+    }
 }
